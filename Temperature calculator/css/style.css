@@ -1,0 +1,60 @@
+body {
+    background-color: #fbfcde;
+    color: #3a559c;
+}
+
+.row:before,
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+header h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section .row .col-6 {
+    float: left;
+    text-align: center;
+}
+
+section .row .col-6 button {
+    -moz-box-shadow: 3px 4px 0px 0px #899599;
+    -webkit-box-shadow: 3px 4px 0px 0px #899599;
+    box-shadow: 3px 4px 0px 0px #899599;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #eddaed));
+    background: -moz-linear-gradient(top, #ededed 5%, #eddaed 100%);
+    background: -webkit-linear-gradient(top, #ededed 5%, #eddaed 100%);
+    background: -o-linear-gradient(top, #ededed 5%, #eddaed 100%);
+    background: -ms-linear-gradient(top, #ededed 5%, #eddaed 100%);
+    background: linear-gradient(to bottom, #ededed 5%, #eddaed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#eddaed', GradientType=0);
+    background-color: #ededed;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    border: 1px solid #cc93cc;
+    display: inline-block;
+    cursor: pointer;
+    color: #3a559c;
+    font-family: Arial;
+    font-size: 18px;
+    padding: 7px 25px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #e1e2ed;
+    width: 90%;
+    height: 100px;
+    font-size: 20px;
+}
+
+.info {
+    padding-top: 70px;
+}
+
+/*# sourceMappingURL=style.css.map */

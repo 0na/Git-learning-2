@@ -1,0 +1,19 @@
+img {
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid black;
+    ;
+}
+
+* {
+
+    list-style-type: none;
+
+}
+
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+}
