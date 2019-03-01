@@ -1,0 +1,23 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-bottom: 25px;
+    border-bottom: .5px dotted;
+}
+
+.title {
+    margin: 25px 0 10px 0;
+    font-weight: 300;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.left {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 300;
+}
+
