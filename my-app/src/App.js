@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-var API = ("http://api.open-notify.org/iss-now.json")
+//var API = ("http://api.open-notify.org/iss-now.json")
 
 // Wykorzystaj dane udostępniane przez API
 // http://open-notify.org/Open-Notify-API/ISS-Location-Now/
@@ -24,7 +24,7 @@ class App extends Component {
   }
 
   loadData = () => {
-    fetch("API")
+    fetch("http://api.open-notify.org/iss-now.json")
       .then(response => {
         const preparedResponse = JSON.parse(response); //sparsowane dane
         this.setState({ //zmiana stanu
@@ -35,16 +35,19 @@ class App extends Component {
       )
   };
 
-  getDate = () => { //aktualna godzina
-    const time = new Date().toDateString();
-    this.setState({
-      time
-    })
+  getDate = (time) => { //aktualna godzina
+    setInterval(() => {
+      this.setState({
+        time: new Date().toLocaleString()
+      })
+    }, 1000)
+
   }
+
 
   componentDidMount() {
     this.loadData.bind(this);
-    this.getDate.bind(this);
+    setInterval(this.getDate.bind(this), 1000);
   }
 
 
@@ -53,6 +56,7 @@ class App extends Component {
 
     return (
       <div className="app">
+        <div className="checktime">Time now is : { new Date().toLocaleTimeString() }</div>
         <div className="container">
           <div className="welcome">{ this.state.text } </div>
           <div className="startData">The time when you join my application was: { this.state.preparedResponse.timestamp }
@@ -71,7 +75,6 @@ class App extends Component {
             <div>Latitude: </div>
           </div>
         </div >
-        <div className="checktime">{ time }</div>
       </div>
     );
   }
@@ -93,3 +96,16 @@ function timeConverter(timestamp) {  //formula dziala !!!
 }
 
 console.log(timeConverter(624534233));
+
+
+// function calculateDistance(lat1, lon1, lat2, lon2) {
+//   var R = 6371; // km
+//   var dLat = (lat2 - lat1).toRad();
+//   var dLon = (lon2 - lon1).toRad();
+//   var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+//   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//   var d = R * c;
+//   return d;
+// }
+
+// console.log(calculateDistance("costam"))
