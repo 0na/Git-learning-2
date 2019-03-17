@@ -18,38 +18,37 @@ class App extends Component {
       text: "Welcome to the ISS Position Application",
       error: "",
       isloaded: false,
-      preparedResponse: [],//dane z API
-      time: "" //aktualna godzina
+      preparedResponse: []//dane z API
     }
   }
 
-  loadData = () => {
-    fetch("API")
-      .then(response => {
-        const preparedResponse = JSON.parse(response); //sparsowane dane
-        this.setState({ //zmiana stanu
-          data: preparedResponse, //tu powinny wchodzic dane z api
-          isloaded: true, //powinno sie ladowac
-        })
-      }
-      )
-  };
+  // loadData = () => {
+  //   fetch("API")
+  //     .then(response => {
+  //       const preparedResponse = JSON.parse(response); //sparsowane dane
+  //       this.setState({ //zmiana stanu
+  //         data: preparedResponse, //tu powinny wchodzic dane z api
+  //         isloaded: true, //powinno sie ladowac
+  //       })
+  //     }
+  //     )
+  // };
+  // componentDidMount() {
+  //   this.loadData.bind(this);
+  // }
 
-  getDate = () => { //aktualna godzina
-    const time = new Date().toDateString();
-    this.setState({
-      time
-    })
+
+componentDidMount() {
+    fetch('https://api.mydomain.com')
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
   }
 
-  componentDidMount() {
-    this.loadData.bind(this);
-    this.getDate.bind(this);
-  }
+
+
 
 
   render() {
-    const { time } = this.state;
 
     return (
       <div className="app">
@@ -71,7 +70,6 @@ class App extends Component {
             <div>Latitude: </div>
           </div>
         </div >
-        <div className="checktime">{ time }</div>
       </div>
     );
   }
