@@ -18,7 +18,7 @@ class App extends Component {
       text: "Welcome to the ISS Position Application",
       error: "",
       isloaded: false,
-      preparedResponse: [],//dane z API
+      preparedResponse: {},//dane z API
       time: "" //aktualna godzina
     }
   }
@@ -35,13 +35,20 @@ class App extends Component {
       )
   };
 
-  getDate = (time) => { //aktualna godzina
+  getDate = () => { //aktualna godzina
     setInterval(() => {
       this.setState({
         time: new Date().toLocaleString()
       })
     }, 1000)
 
+  }
+
+  issDistanse = () => { //iss distance from app started - use (cords) lat and land
+  }
+
+  convertTime = () => { //convert unix_time to 'normal' format
+    return timeConverter();
   }
 
 
@@ -52,12 +59,12 @@ class App extends Component {
 
 
   render() {
-    const { time } = this.state;
+    const { preparedResponse, time, text } = this.state.preparedResponse
 
     return (
       <div className="app">
-        <div className="checktime">Time now is : { new Date().toLocaleTimeString() }</div>
         <div className="container">
+          <div className="checktime">Time check : { new Date().toLocaleTimeString() }</div>
           <div className="welcome">{ this.state.text } </div>
           <div className="startData">The time when you join my application was: { this.state.preparedResponse.timestamp }
             <div> ISS was in position: </div>

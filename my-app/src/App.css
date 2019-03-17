@@ -4,6 +4,8 @@
   font-family: 'Space Mono', monospace;
   line-height: 28px;
   text-shadow: 2px 6px 9px rgba(216, 228, 82, 0.99);
+  margin: 0px;
+  padding: 0px;
 }
 
 .app {
@@ -18,6 +20,7 @@
 .checktime {
   color: #fff;
   font-size: 10px;
+  padding-top: 90px;
 }
 
 .container {
