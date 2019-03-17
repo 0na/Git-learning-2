@@ -1,109 +1,71 @@
-import React, {
-    Component
-} from 'react';
-import './App.css';
+// import React, { Component } from 'react';
+// import './App.css';
 
-//var API = ("http://api.open-notify.org/iss-now.json")
+// class App extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             text: "Welcome to the ISS Position Application", //test this.state.text
+//             error: "",
+//             isloaded: false,
+//             preparedResponse: {},//dane z API
+//             time: "" //aktualna godzina
+//         }
+//     }
 
-// Wykorzystaj dane udostępniane przez API
-// http://open-notify.org/Open-Notify-API/ISS-Location-Now/
-// • Przedstaw użytkownikowi następujące dane:
-// prędkość ISS na podstawie dwóch odczytów,
-// droga przebyta przez ISS od początku zapisanych odczytów.
-// Program musi dać się łatwo skompilować i uruchomić na standardowym
-// środowisku.
 
-class App extends Component {
+//     componentDidMount() {
+//         const url = 'http://api.open-notify.org/iss-now.json';
+//         fetch(url)
+//             .then((d) => {
+//                 this.setState({
+//                     preparedResponse: [
+//                         { latitude: d.iss_position.latitude } + ', ' +
+//                         { longitude: d.iss_position.longitude }
+//                     ]
+//                 });
+//             });
+//         setInterval(this.getDate.bind(this), 1000);
+//     }
+
+//     render() {
+//         const { preparedResponse } = this.state
+//         return (
+//             <div>{ preparedResponse }</div>
+//         );
+//     }
+//}
+
+
+let url = 'http://api.open-notify.org/iss-now.json';
+
+class Basemap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: "Welcome to the ISS Position Application",
-            error: "",
-            isloaded: false,
-            preparedResponse: [] //dane z API
-        }
+            center: [31, 13]
+        };
     }
-
-    // loadData = () => {
-    //   fetch("API")
-    //     .then(response => {
-    //       const preparedResponse = JSON.parse(response); //sparsowane dane
-    //       this.setState({ //zmiana stanu
-    //         data: preparedResponse, //tu powinny wchodzic dane z api
-    //         isloaded: true, //powinno sie ladowac
-    //       })
-    //     }
-    //     )
-    // };
-    // componentDidMount() {
-    //   this.loadData.bind(this);
-    // }
-
-
     componentDidMount() {
-        fetch('https://api.mydomain.com')
-            .then(response => response.json())
-            .then(data => this.setState({
-                data
-            }));
+        this.getCenter();
+        this.interval = setInterval(this.getCenter, 2000);
     }
-
-
-
-
-
+    getCenter() {
+        fetch('http://api.open-notify.org/iss-now.json')
+            .then(d => d.json())
+            .then(d => {
+                this.setState({
+                    center: [d.iss_position.latitude, + ', ' +
+                        d.iss_position.longitude]
+                });
+            });
+    }
     render() {
-
-        return (<
-            div className="app" >
-            <
-            div className="container" >
-                <
-            div className="welcome" > {
-                        this.state.text
-                    } < /div> <
-            div className="startData" > The time when you join my application was: {
-                            this.state.preparedResponse.timestamp
-                        } <
-            div > ISS was in position: < /div> <
-            div > Longitude: {
-                                    this.state.preparedResponse.longitude
-                                } < /div> <
-            div > Latitude: {
-                                        this.state.preparedResponse.latitude
-                                    } < /div> <
-            /div> <
-            div className="calculated" >
-                                        <
-            div className="speed" > ISS is moving with speed: < /div> <
-            div className="distance" > Defeated distance from time when you join: < /div> <
-            /div> <
-            div className="currentData" >
-                                                    <
-            div > The time now is: < /div> <
-            div > ISS position is: < /div> <
-            div > Longitude: < /div> <
-            div > Latitude: < /div> <
-            /div> <
-            /div > <
-            /div>
-                                                                );
-                                                            }
-                                                        }
-                                                        export default App;
-                                                        
-function timeConverter(timestamp) { //formula dziala !!!
-    var a = new Date(timestamp * 1000);
-                                                                    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                                                                    var year = a.getFullYear();
-                                                                    var month = months[a.getMonth()];
-                                                                    var date = a.getDate();
-                                                                    var hour = a.getHours();
-                                                                    var min = a.getMinutes();
-                                                                    var sec = a.getSeconds();
-                                                                    var time =
-                                                                        date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
-                                                                    return time;
-                                                                }
-                                                                
-console.log(timeConverter(624534233));
+        return (
+            // <Map style={ { width: '100vw', height: '100vh' } }
+            //     mapProperties={ { basemap: 'satellite' } }
+            //     viewProperties={ this.state } />
+        );
+    }
+}
+export default Basemap;
