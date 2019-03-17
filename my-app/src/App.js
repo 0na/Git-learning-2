@@ -47,8 +47,12 @@ class App extends Component {
   issDistanse = () => { //iss distance from app started - use (cords) lat and land
   }
 
-  convertTime = () => { //convert unix_time to 'normal' format
+  readTime = () => { //convert unix_time to 'normal' format
     return timeConverter();
+  }
+
+  issSpeed = () => { //spedd iss. use distance() and convert time formula
+
   }
 
 
